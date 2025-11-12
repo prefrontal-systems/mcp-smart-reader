@@ -2,19 +2,33 @@
 
 This directory contains project-specific configuration for Claude Code.
 
+## Directory Structure
+
+**User-level** (`~/.claude/`):
+- `commands/` - Global slash commands (like `/project-init`)
+- `project-init-config.json` - Default initialization settings
+
+**Project-level** (`.claude/`):
+- `project-init-config.json` - Project-specific customizations (optional)
+- `CLAUDE.md` - Project documentation (created by `/project-init`)
+- `mcp_servers.json` - Project MCP config (created by `/project-init`)
+- `settings.local.json` - Project-specific permissions
+
 ## Files
 
-### `commands/project-init.md`
-Custom slash command: `/project-init`
+### User-Level: `~/.claude/commands/project-init.md`
+Global slash command: `/project-init`
 
-Initializes a project with:
+**Installed at user level** - works in all your projects.
+
+Initializes any project with:
 - Repository exploration
 - CLAUDE.md creation/update
 - MCP server configuration import
 - Git workflow documentation
 - Extensible custom initialization steps
 
-**Usage**: Type `/project-init` in Claude Code
+**Usage**: Type `/project-init` in Claude Code (any project)
 
 ### `project-init-config.json`
 Configuration for the project initialization process.
