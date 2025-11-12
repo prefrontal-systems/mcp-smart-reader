@@ -1,0 +1,19 @@
+{
+  "version": "1.0.0",
+  "initialized": "2025-11-12",
+  "components": {
+    "claude_md": true,
+    "mcp_servers": true,
+    "git_workflow": true
+  },
+  "custom_init_steps": [
+    {
+      "name": "example-custom-step",
+      "description": "Example: Run additional setup script",
+      "enabled": false,
+      "script": "./scripts/custom-init.sh",
+      "notes": "Enable this and update the script path to run custom initialization"
+    }
+  ],
+  "notes": "Add custom initialization steps to custom_init_steps array. Each step should have: name, description, enabled (bool), script (path), and optional notes."
+}
