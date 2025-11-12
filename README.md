@@ -42,9 +42,9 @@ pip install -e .
 
 ## Development Status
 
-**Current**: Basic structure in place, ready for speckit workflow
+**Current**: Basic structure in place, core functionality implemented
 
-**Next Steps** (via speckit):
+**Next Steps**:
 1. Implement section extraction logic
 2. Add multi-format support (PDF, DOCX)
 3. Enhance summarization algorithms
