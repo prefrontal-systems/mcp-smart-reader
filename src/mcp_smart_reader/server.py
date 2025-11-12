@@ -8,7 +8,6 @@ rich metadata, section extraction, and actionable cross-references.
 """
 
 from pathlib import Path
-from typing import Optional
 
 from fastmcp import FastMCP
 
@@ -17,7 +16,7 @@ from .summarizer import (
     extract_abstract,
     extract_headers,
     extract_keywords_from_abstract,
-    extract_key_points,
+    extract_section_content,
     generate_summary,
 )
 
@@ -29,9 +28,7 @@ DEFAULT_SUMMARY_STYLE = "structured"
 mcp = FastMCP("Smart Document Reader")
 
 
-def format_preamble(
-    original_tokens: int, summary_tokens: int, file_path: str
-) -> str:
+def format_preamble(original_tokens: int, summary_tokens: int, file_path: str) -> str:
     """Format the warning preamble for summary responses."""
     reduction = original_tokens / summary_tokens if summary_tokens > 0 else 0
 
@@ -106,9 +103,7 @@ def smart_read(
     token_count = estimate_tokens(content)
 
     # Decide whether to summarize
-    should_summarize = mode == "summary" or (
-        mode == "auto" and token_count > TOKEN_THRESHOLD
-    )
+    should_summarize = mode == "summary" or (mode == "auto" and token_count > TOKEN_THRESHOLD)
 
     if should_summarize:
         summary = generate_summary(content, style=summary_style)
@@ -122,9 +117,7 @@ def smart_read(
             "style": summary_style,
             "original_tokens": token_count,
             "summary_tokens": summary_tokens,
-            "reduction_factor": round(token_count / summary_tokens, 1)
-            if summary_tokens > 0
-            else 0,
+            "reduction_factor": round(token_count / summary_tokens, 1) if summary_tokens > 0 else 0,
             "sections": {
                 "count": len(sections),
                 "headers": sections[:20],
@@ -143,9 +136,7 @@ def smart_read(
                     "code_examples": True,
                     "tables_and_figures": True,
                 },
-                "completeness_score": summary_tokens / token_count
-                if token_count > 0
-                else 0,
+                "completeness_score": summary_tokens / token_count if token_count > 0 else 0,
             },
             "original": {
                 "path": str(path.absolute()),
@@ -154,9 +145,7 @@ def smart_read(
                 "size_tokens": token_count,
             },
             "confidence": {
-                "completeness": summary_tokens / token_count
-                if token_count > 0
-                else 0,
+                "completeness": summary_tokens / token_count if token_count > 0 else 0,
                 "recommended_for": [
                     "initial_understanding",
                     "overview",
@@ -205,13 +194,30 @@ def read_section(file_path: str, section_heading: str) -> dict:
     except Exception as e:
         return {"error": f"Error reading file: {str(e)}", "type": "error"}
 
-    # TODO: Implement section extraction logic
-    # For now, return placeholder
+    # Extract section
+    section_content, heading_level, start_line, end_line = extract_section_content(
+        content, section_heading
+    )
+
+    if section_content is None:
+        return {
+            "content": f"ERROR: Section '{section_heading}' not found",
+            "type": "error",
+            "section": section_heading,
+            "error": f"Section '{section_heading}' not found in document",
+        }
+
+    # Success - return section with metadata
+    section_tokens = estimate_tokens(section_content)
+
     return {
-        "content": f"Section '{section_heading}' extraction not yet implemented",
+        "content": section_content,
         "type": "section",
         "section": section_heading,
-        "note": "This feature will be implemented via speckit workflow",
+        "heading_level": heading_level,
+        "tokens": section_tokens,
+        "start_line": start_line,
+        "end_line": end_line,
     }
 
 
