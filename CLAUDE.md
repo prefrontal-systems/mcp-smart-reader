@@ -90,31 +90,6 @@ ruff format src/mcp_smart_reader
 ruff format --check src/mcp_smart_reader
 ```
 
-## Development Workflow
-
-This project uses **Speckit** - a structured development workflow system. Before implementing features, use speckit commands to clarify requirements and plan work.
-
-### Speckit Commands
-
-Available in `.claude/commands/`:
-
-- `/speckit.specify` - Create feature spec from natural language description
-- `/speckit.clarify` - Ask targeted questions about underspecified areas
-- `/speckit.plan` - Generate implementation plan
-- `/speckit.tasks` - Break down into dependency-ordered tasks
-- `/speckit.implement` - Execute task list
-- `/speckit.analyze` - Check consistency across spec/plan/tasks
-- `/speckit.checklist` - Generate feature-specific checklist
-
-### Recommended Workflow
-
-1. **Specify** - `/speckit.specify` with feature description
-2. **Clarify** - `/speckit.clarify` to resolve ambiguities
-3. **Plan** - `/speckit.plan` for architecture decisions
-4. **Tasks** - `/speckit.tasks` for step-by-step work items
-5. **Implement** - `/speckit.implement` to execute
-6. **Verify** - `/speckit.analyze` for consistency check
-
 ## Key Implementation Details
 
 ### Token Counting
@@ -236,7 +211,6 @@ When implementing tests:
 
 - **README.md** - Installation, features, token savings examples
 - **pyproject.toml** - Dependencies, build config, tool settings
-- **.specify/templates/** - Speckit workflow templates
 - **Prefrontal Systems org CLAUDE.md** - Organization-level guidance and philosophy
 
 ## Dependencies
