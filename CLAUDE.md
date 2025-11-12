@@ -14,25 +14,27 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 **server.py** - MCP server with three tools:
 - `smart_read(file_path, mode, summary_style)` - Auto-summarize large files, return metadata-rich responses
-- `read_section(file_path, section_heading)` - Extract specific sections (TODO: not implemented)
+- `read_section(file_path, section_heading)` - Extract specific sections with metadata (line numbers, tokens, heading level)
 - `list_sections(file_path)` - Return document table of contents
 
 **summarizer.py** - Text processing functions:
-- `estimate_tokens(text)` - Token counting (MISSING: referenced in server.py but not implemented)
+- `estimate_tokens(text)` - Token counting using tiktoken cl100k_base encoding
 - `extract_abstract(text)` - Regex-based abstract extraction from markdown
-- `extract_headers(text)` - Find section headers (aliased as `extract_section_headers` internally)
+- `extract_headers(text)` - Find section headers (alias for `extract_section_headers`)
 - `extract_keywords_from_abstract(text)` - Parse "**Keywords:**" line
 - `extract_key_points(text, num_points)` - Score and rank key sentences
-- `generate_summary(content, style)` - Generate summaries (MISSING: referenced in server.py but not implemented)
+- `generate_summary(content, style)` - Generate structured summaries combining multiple extractors
+- `extract_section_content(text, heading)` - Extract markdown section content with metadata
 
-### Missing Implementation
+### Implementation Status
 
-`server.py` imports functions that don't exist in `summarizer.py`:
-- `estimate_tokens` - Needs tiktoken implementation
-- `generate_summary` - Needs to combine extract_* functions into structured output
-- `extract_headers` - Exists as `extract_section_headers` but wrong name exported
-
-`read_section()` tool is stubbed with placeholder - needs markdown section extraction logic.
+✅ **All core functionality implemented** (feature 001-naming-refactor-server):
+- Token counting with tiktoken
+- Summary generation combining existing extractors
+- Section extraction with line numbers and heading levels
+- Import naming conflicts resolved
+- Full type coverage with mypy strict mode
+- Zero linting issues with ruff
 
 ## Development Commands
 

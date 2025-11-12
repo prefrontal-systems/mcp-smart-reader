@@ -24,9 +24,9 @@
 
 **Purpose**: Verify project initialization and dependencies
 
-- [ ] T001 Verify project structure matches plan.md (src/mcp_smart_reader/, pyproject.toml, README.md)
-- [ ] T002 Verify dependencies declared in pyproject.toml (fastmcp>=0.3.0, tiktoken>=0.8.0, mypy>=1.11.0, ruff>=0.6.0)
-- [ ] T003 [P] Verify Python 3.10+ installed and active (`python --version` >= 3.10)
+- [x] T001 Verify project structure matches plan.md (src/mcp_smart_reader/, pyproject.toml, README.md)
+- [x] T002 Verify dependencies declared in pyproject.toml (fastmcp>=0.3.0, tiktoken>=0.8.0, mypy>=1.11.0, ruff>=0.6.0)
+- [x] T003 [P] Verify Python 3.10+ installed and active (`python --version` >= 3.10)
 
 ---
 
@@ -36,9 +36,9 @@
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Install package in development mode (`uv sync` or `pip install -e .`)
-- [ ] T005 [P] Verify mypy configuration in pyproject.toml (strict mode, python 3.10+)
-- [ ] T006 [P] Verify ruff configuration in pyproject.toml (line-length=100, target py310)
+- [x] T004 Install package in development mode (`uv sync` or `pip install -e .`)
+- [x] T005 [P] Verify mypy configuration in pyproject.toml (strict mode, python 3.10+)
+- [x] T006 [P] Verify ruff configuration in pyproject.toml (line-length=100, target py310)
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -52,12 +52,12 @@
 
 ### Implementation for User Story 1
 
-- [ ] T007 [P] [US1] Add `estimate_tokens(text: str) -> int` function to src/mcp_smart_reader/summarizer.py
-- [ ] T008 [P] [US1] Add `generate_summary(content: str, style: str = "structured") -> str` function to src/mcp_smart_reader/summarizer.py
-- [ ] T009 [US1] Add `extract_headers` alias for `extract_section_headers` in src/mcp_smart_reader/summarizer.py
-- [ ] T010 [US1] Verify all imports in src/mcp_smart_reader/server.py resolve without ImportError
-- [ ] T011 [US1] Run `mypy src/mcp_smart_reader` and fix any type errors to achieve zero errors
-- [ ] T012 [US1] Run `ruff check src/mcp_smart_reader` and fix any linting issues
+- [x] T007 [P] [US1] Add `estimate_tokens(text: str) -> int` function to src/mcp_smart_reader/summarizer.py
+- [x] T008 [P] [US1] Add `generate_summary(content: str, style: str = "structured") -> str` function to src/mcp_smart_reader/summarizer.py
+- [x] T009 [US1] Add `extract_headers` alias for `extract_section_headers` in src/mcp_smart_reader/summarizer.py
+- [x] T010 [US1] Verify all imports in src/mcp_smart_reader/server.py resolve without ImportError
+- [x] T011 [US1] Run `mypy src/mcp_smart_reader` and fix any type errors to achieve zero errors
+- [x] T012 [US1] Run `ruff check src/mcp_smart_reader` and fix any linting issues
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -86,10 +86,10 @@ ruff check src/mcp_smart_reader  # Should report 0 issues
 
 ### Implementation for User Story 2
 
-- [ ] T013 [US2] Verify entry point `mcp-smart-reader = "mcp_smart_reader.server:main"` exists in pyproject.toml [project.scripts]
-- [ ] T014 [US2] Verify `main()` function in src/mcp_smart_reader/server.py calls `mcp.run()`
-- [ ] T015 [US2] Test server startup: run `mcp-smart-reader` command and verify no ImportError or startup errors
-- [ ] T016 [US2] Verify MCP tools registered: `smart_read`, `read_section`, `list_sections` appear in tool list
+- [x] T013 [US2] Verify entry point `mcp-smart-reader = "mcp_smart_reader.server:main"` exists in pyproject.toml [project.scripts]
+- [x] T014 [US2] Verify `main()` function in src/mcp_smart_reader/server.py calls `mcp.run()`
+- [x] T015 [US2] Test server startup: run `mcp-smart-reader` command and verify no ImportError or startup errors
+- [x] T016 [US2] Verify MCP tools registered: `smart_read`, `read_section`, `list_sections` appear in tool list
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -114,12 +114,12 @@ mcp-smart-reader
 
 ### Implementation for User Story 3
 
-- [ ] T017 [P] [US3] Add `extract_section_content(text: str, heading: str) -> str` helper function to src/mcp_smart_reader/summarizer.py
-- [ ] T018 [US3] Update `read_section(file_path, section_heading)` in src/mcp_smart_reader/server.py to call `extract_section_content()`
-- [ ] T019 [US3] Add return dict with content, type, section, heading_level, tokens, start_line, end_line in src/mcp_smart_reader/server.py read_section()
-- [ ] T020 [US3] Add error handling for section not found (return dict with type="error", section, error message) in src/mcp_smart_reader/server.py read_section()
-- [ ] T021 [US3] Run `mypy src/mcp_smart_reader` and fix any new type errors from read_section changes
-- [ ] T022 [US3] Test section extraction with test markdown file containing multiple sections
+- [x] T017 [P] [US3] Add `extract_section_content(text: str, heading: str) -> str` helper function to src/mcp_smart_reader/summarizer.py
+- [x] T018 [US3] Update `read_section(file_path, section_heading)` in src/mcp_smart_reader/server.py to call `extract_section_content()`
+- [x] T019 [US3] Add return dict with content, type, section, heading_level, tokens, start_line, end_line in src/mcp_smart_reader/server.py read_section()
+- [x] T020 [US3] Add error handling for section not found (return dict with type="error", section, error message) in src/mcp_smart_reader/server.py read_section()
+- [x] T021 [US3] Run `mypy src/mcp_smart_reader` and fix any new type errors from read_section changes
+- [x] T022 [US3] Test section extraction with test markdown file containing multiple sections
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -148,11 +148,11 @@ EOF
 
 **Purpose**: Final quality checks and documentation validation
 
-- [ ] T023 [P] Run `mypy src/mcp_smart_reader` final verification (must report 0 errors)
-- [ ] T024 [P] Run `ruff check src/mcp_smart_reader` final verification (must report 0 issues)
-- [ ] T025 [P] Run `ruff format src/mcp_smart_reader` to ensure consistent formatting
-- [ ] T026 Verify quickstart.md instructions work end-to-end (install, run server, test tools)
-- [ ] T027 Update CLAUDE.md if any implementation details differ from plan (file paths, function signatures)
+- [x] T023 [P] Run `mypy src/mcp_smart_reader` final verification (must report 0 errors)
+- [x] T024 [P] Run `ruff check src/mcp_smart_reader` final verification (must report 0 issues)
+- [x] T025 [P] Run `ruff format src/mcp_smart_reader` to ensure consistent formatting
+- [x] T026 Verify quickstart.md instructions work end-to-end (install, run server, test tools)
+- [x] T027 Update CLAUDE.md if any implementation details differ from plan (file paths, function signatures)
 
 ---
 
