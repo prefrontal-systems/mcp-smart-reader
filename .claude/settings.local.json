@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__claude-historian__search_conversations",
+      "Bash(find:*)",
+      "Bash(git fetch:*)",
+      "Bash(.specify/scripts/bash/create-new-feature.sh:*)",
+      "Bash(.specify/scripts/bash/setup-plan.sh:*)",
+      "Bash(.specify/scripts/bash/update-agent-context.sh:*)",
+      "Bash(.specify/scripts/bash/check-prerequisites.sh:*)",
+      "Bash(gh auth status:*)",
+      "Bash(source .venv/bin/activate)",
+      "Bash(python -c:*)",
+      "Bash(ruff check:*)",
+      "Bash(timeout 2 .venv/bin/mcp-smart-reader:*)",
+      "Bash(mypy:*)",
+      "Bash(ruff format:*)",
+      "Bash(gh pr view:*)",
+      "Bash(git pull:*)",
+      "Bash(pip install:*)",
+      "Bash(timeout 2 mcp-smart-reader:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)",
+      "Bash(git commit:*)",
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(python3:*)",
+      "Bash(pip show:*)",
+      "Bash(uv pip install:*)",
+      "Bash(cat:*)",
+      "mcp__cortextgraph__search_memory",
+      "Bash(deactivate)",
+      "Bash(source:*)",
+      "Bash(echo:*)",
+      "Bash(git reset:*)",
+      "mcp__cortextgraph__save_memory",
+      "Bash(rm:*)",
+      "Bash(chmod:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
